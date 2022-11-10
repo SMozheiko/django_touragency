@@ -23,7 +23,8 @@ import mainapp.views as mainapp
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', mainapp.main, name='main'),
-    path('brands/', include('mainapp.urls', namespace='brands'))
+    path('brands/', include('mainapp.urls', namespace='brands')),
+    path('auth/', include('authapp.urls', namespace='auth'))
 ]
 
 if settings.DEBUG:

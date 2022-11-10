@@ -25,6 +25,14 @@
                     <a href="#" class="main-menu-link gold-text">Контакты</a>
                 </li>
             </ul>
+            <div class="user">
+                {% if user.is_authenticated %}
+                    {{ user.username | title }}
+                {% else %}
+{#                    <a href="{% url 'auth:login' %}" class="main-menu-link gold-text">Войти</a>#}
+                    <a href="{% url 'auth:register' %}" class="main-menu-link gold-text">Регистрация</a>
+                {% endif %}
+            </div>
         </div>
         <div class="content">
             {% block content %}
