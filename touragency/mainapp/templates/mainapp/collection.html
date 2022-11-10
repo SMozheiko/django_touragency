@@ -1,0 +1,60 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="slider-box">
+        <div class="slider-arrow left gold-text">
+            &laquo;
+        </div>
+        <ul class="slider">
+            {% for slide in collection.slide_set.all %}
+                <li class="slider-item">
+                    <img src="/media/{{ slide.image }}" alt=""
+                         class="slide-img item-photo"
+                         style="display: {% if forloop.counter == 1 %}
+                             block
+                             {% else %}
+                             none
+                         {% endif %}"
+                         data-id="{{ forloop.counter }}"
+                    >
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="slider-arrow right gold-text">
+            &raquo;
+        </div>
+    </div>
+    <div class="items">
+        {% for tile in collection.item_set.all %}
+            <div class="item-card">
+                <div class="item-card-img">
+                    <img src="/media/{{ tile.image }}" alt="{{ tile.title }}" class="item-photo">
+                </div>
+                <div class="item-card-row">
+                    <label>Тип</label>
+                    <span>{{ tile.kind | title }}</span>
+                </div>
+                <div class="item-card-row">
+                    <label>Название</label>
+                    <span>{{ tile.title }}</span>
+                </div>
+                <div class="item-card-row">
+                    <label>Коллекция</label>
+                    <span>{{ collection.title }}</span>
+                </div>
+                <div class="item-card-row">
+                    <label>Размеры</label>
+                    <span>{{ tile.characteristics }}</span>
+                </div>
+                <div class="item-card-row">
+                    <label>Цена</label>
+                    <span>{{ tile.price }} руб/{{ tile.units }}</span>
+                </div>
+            </div>
+         {% endfor %}
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/collection.js' %}"></script>
+{% endblock %}

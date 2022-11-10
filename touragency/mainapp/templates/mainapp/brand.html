@@ -1,0 +1,16 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block content %}
+{% for collection in brand_item.collection_set.all %}
+    <a href="{% url 'brands:collection' collection.pk %}"
+       class="collection-card">
+        <span class="collection-title">
+            {{ collection.title }}
+        </span>
+        <img src="/media/{{ collection.label }}" alt=""
+             class="collection-label">
+    </a>
+{% endfor %}
+
+{% endblock %}

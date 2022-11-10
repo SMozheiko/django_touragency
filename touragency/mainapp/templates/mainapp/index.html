@@ -1,0 +1,20 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="greetings">
+        <h1 class="greetings-title">Добро пожаловать</h1>
+        <div class="greetings-text">
+            Приветствуем Вас в нашем интернет-магазине "Плитка для всех".
+            В нашем магазине Вы найдете керамическую плитку на любой вкус и
+            для любых целей
+        </div>
+    </div>
+    <div class="categories">
+        {% for brand in brands %}
+            <a href="{% url 'brands:index' brand.id %}" class="brand-link">
+                <img src="/media/{{ brand.label }}" alt="" class="brand-label">
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
